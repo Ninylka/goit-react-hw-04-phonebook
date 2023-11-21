@@ -4,20 +4,19 @@ import { FormPhonebook,ButtonPhonebook,LabelPhonebook,InputPhonebookName,InputPh
 import { useState } from 'react';
 
 export const FormContacts = ({onSubmit}) => {
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
+
   const [form, setForm] = useState({name: '', number: ''} );
 const {name, number} = form;
 
   const handleChange = (e) => {
     const {name , value } = e.target;
 setForm(prevState => ({...prevState, [name]: value}))
-    // if (e.target.name === 'number') {
-    //   const number = evt.target.value.replace(/[^\d-]/g, '');
-    //   setNumber({ [evt.target.name]: number });
-    // } else {
-    //   setName({ [evt.target.name]: evt.target.value });
-    // }
+    if (name === 'number') {
+      const number = value.replace(/[^\d-]/g, '');
+    setForm((prevForm) => ({...prevForm, [name]: number}));
+    } else {
+      setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    }
   };
 
 
